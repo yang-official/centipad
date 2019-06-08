@@ -30,30 +30,35 @@
         <li><a href="{{url_for('about')}}">About</a></li>
       </ul>
 
-<!-- Start of Main Section -->
- <div class="container">
-    <div class="section">
+      <!-- Start of Main Section -->
+       <div class="container">
+          <div class="section">
 
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="input-field col s12 m10">
-          <div class="icon-block">
-            <h2 class="center brown-text">Copy Text <!--<i class="material-icons">chrome_reader_mode</i>--></h2>
-           <form method="POST" action="/analyze">
-         <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
+            <!--   Icon Section   -->
+            <div class="row">
+              <div class="input-field col s12 m10">
+                <div class="icon-block">
+                  <h2 class="center brown-text">Text <!--<i class="material-icons">chrome_reader_mode</i>--></h2>
+                 <form method="POST" action="/analyze">
+               <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true"
+               oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'>
+                 Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in realtime will have multiple touchpoints for offshoring. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration. Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+               </textarea>
 
-         <br/>
-         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
-          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
+               <br/>
+               <div class="center">
+                <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Analyze</button>
+              </div>
+              </form>
+                </div>
+              </div>
 
-        </form>
+            </div>
+
           </div>
         </div>
+        <!-- End -->
 
-      </div>
-    </div>
-  </div>
-  <!-- End -->
 
   <!-- Result Display-->
   <section class="section section-solutions-about grey darken-2">
@@ -81,7 +86,7 @@
               <p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
         </div>
             <p class="light">{{ final_summary }}</p>
-            <p>Flagged Terms: <span style="color:#0091EA;">{{ flagged }} </span></p>
+            <p>Reason(s) for Flag: <span style="color:#0091EA;">{{ flagged }} </span></p>
             <p>Topic: <span style="color:#0091EA;">{{ topic }} </span></p>
           </div>
         </div>

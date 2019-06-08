@@ -8,10 +8,10 @@ from string import punctuation
 from heapq import nlargest
 
 def text_modeler(raw_docx):
-    return 'Contract Law'
+    return 'Corporate'
 
 def flagger(raw_docx):
-    return 'Sold in perpetuity'
+    return 'Jargon, Capitalize, Leverage'
 
 def text_summarizer(raw_docx):
     raw_text = raw_docx
