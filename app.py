@@ -35,23 +35,6 @@ def analyze():
 	session['flagged'] = flagged
 	return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
-@app.route('/analyze_url',methods=['GET','POST'])
-def analyze_url():
-	start = time.time()
-	if request.method == 'POST':
-		raw_url = request.form['raw_url']
-		rawtext = get_text(raw_url)
-		final_reading_time = readingTime(rawtext)
-		final_summary = text_summarizer(rawtext)
-		summary_reading_time = readingTime(final_summary)
-		end = time.time()
-		final_time = end-start
-		flagged = flagger(rawtext)
-		topic = text_modeler(rawtext)
-	session['topic'] = topic
-	session['flagged'] = flagged
-	return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
-
 @app.route("/about")
 def about():
     return render_template('about.html')
