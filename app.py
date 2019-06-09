@@ -3,7 +3,7 @@ from docusign import embedded_signing_ceremony
 import webbrowser
 import time
 import spacy
-from spacy_summarization import text_summarizer, text_modeler, flagger
+from spacy_summarization import text_summarizer, text_modeler, flagger, data_select
 from google_ml import classify_text
 import config
 
@@ -15,25 +15,42 @@ def readingTime(mytext):
 	estimatedTime = total_words/200.0
 	return estimatedTime
 
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def index():
     return render_template('index.html')
 
 @app.route('/analyze',methods=['GET','POST'])
 def analyze():
-	start = time.time()
-	if request.method == 'POST':
-		rawtext = request.form['rawtext']
-		final_reading_time = readingTime(rawtext)
-		final_summary = text_summarizer(rawtext)
-		summary_reading_time = readingTime(final_summary)
-		end = time.time()
-		final_time = end-start
-		flagged = flagger(rawtext)
-		topic = text_modeler(rawtext)
-	session['topic'] = topic
-	session['flagged'] = flagged
-	return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
+    start = time.time();
+    if request.method == 'POST':
+        rawtext = request.form['rawtext']
+        final_reading_time = readingTime(rawtext)
+        final_summary = text_summarizer(rawtext)
+        summary_reading_time = readingTime(final_summary)
+        end = time.time()
+        final_time = end-start
+        flagged = flagger(rawtext)
+        topic = text_modeler(rawtext)
+    session['topic'] = topic
+    session['flagged'] = flagged
+    return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
+
+@app.route('/analyze_doc', methods=['GET','POST'])
+def analyze_doc():
+    start = time.time()
+    if request.method == 'POST':
+        id = int(request.form['docs'])
+        rawtext = data_select(id)
+        final_reading_time = readingTime(rawtext)
+        final_summary = text_summarizer(rawtext)
+        summary_reading_time = readingTime(final_summary)
+        end = time.time()
+        final_time = end-start
+        flagged = flagger(rawtext)
+        topic = text_modeler(rawtext)
+    session['topic'] = topic
+    session['flagged'] = flagged
+    return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
 
 @app.route("/about")
 def about():

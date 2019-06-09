@@ -8,10 +8,10 @@ from string import punctuation
 from heapq import nlargest
 
 def text_modeler(raw_docx):
-    return 'Corporate'
+    return 'Environmental'
 
 def flagger(raw_docx):
-    return 'Jargon, Capitalize, Leverage'
+    return 'Environmental, Pollution, Climate'
 
 def text_summarizer(raw_docx):
     raw_text = raw_docx
@@ -50,3 +50,11 @@ def text_summarizer(raw_docx):
     final_sentences = [ w.text for w in summarized_sentences ]
     summary = ' '.join(final_sentences)
     return summary
+
+def data_select(id):
+    data = {
+        1: 'War',
+        2: 'Peace',
+        3: 'Test'
+    }
+    return data[id]
