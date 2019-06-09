@@ -29,8 +29,8 @@ def analyze():
         summary_reading_time = readingTime(final_summary)
         end = time.time()
         final_time = end-start
-        flagged = flagger(3)
-        topic = text_modeler(3)
+        flagged = flagger(4)
+        topic = text_modeler(4)
     session['topic'] = topic
     session['flagged'] = flagged
     return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
