@@ -29,8 +29,8 @@ def analyze():
         summary_reading_time = readingTime(final_summary)
         end = time.time()
         final_time = end-start
-        flagged = flagger(rawtext)
-        topic = text_modeler(rawtext)
+        flagged = flagger(3)
+        topic = text_modeler(3)
     session['topic'] = topic
     session['flagged'] = flagged
     return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
@@ -46,8 +46,8 @@ def analyze_doc():
         summary_reading_time = readingTime(final_summary)
         end = time.time()
         final_time = end-start
-        flagged = flagger(rawtext)
-        topic = text_modeler(rawtext)
+        flagged = flagger(id)
+        topic = text_modeler(id)
     session['topic'] = topic
     session['flagged'] = flagged
     return render_template('index.html',ctext=rawtext,topic=topic,flagged=flagged,final_summary=final_summary,final_time=final_time,final_reading_time=final_reading_time,summary_reading_time=summary_reading_time)
@@ -69,7 +69,7 @@ def legal():
 @app.route("/docusign")
 def docusign():
     webbrowser.open_new_tab(embedded_signing_ceremony())
-    return 'See New Tab'
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.secret_key = config.secret
