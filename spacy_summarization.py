@@ -56,7 +56,7 @@ def data_select(id):
 def text_modeler(id):
     data = {
     1: 'Corporate',
-    2: 'Test',
+    2: 'Banking',
     3: 'Business'
     }
     return data[id]
